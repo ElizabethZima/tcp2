@@ -18,6 +18,7 @@ TcpServer::TcpServer(QTcpServer *p) :
         std::cout << "*** FAIL LISTING ***" << std::endl;
     /* Обработка нового запроса на подключение */
     connect(tServer, SIGNAL(newConnection()),this, SLOT(accept_connection()));
+
 }
 
 TcpServer::~TcpServer()
@@ -46,5 +47,12 @@ void TcpServer::read_and_reply()
     /* Ответить */
     tSocket->write("Nice day");
     tSocket->close();
+    tServer->close();
+    connect(tSocket, SIGNAL(disconnected()),this, SLOT(end_connect()));
 
+}
+
+void TcpServer::end_connect()
+{
+    std::cout << "--- Connection Ended Server---" << std::endl;
 }

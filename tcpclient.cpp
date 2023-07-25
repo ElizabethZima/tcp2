@@ -4,6 +4,7 @@
 #include <QTcpSocket>
 #include <iostream>
 #include "tcpclient.h"
+#include <QCoreApplication>
 
 const quint16 PORT = 8080;
 
@@ -47,5 +48,6 @@ void TcpClient::read_msg()
 
 void TcpClient::end_connect()
 {
-    std::cout << "--- Connection Ended ---" << std::endl;
+    std::cout << "--- Connection Ended Client---" << std::endl;
+
 }

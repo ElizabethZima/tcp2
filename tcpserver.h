@@ -20,10 +20,13 @@ public:
 public slots:
     void accept_connection(); // Обрабатываем запрос на подключение
     void read_and_reply(); // читаем сообщение и отвечаем, затем отключаемся
+    void end_connect();
 
 private:
     QTcpServer *tServer;
     QTcpSocket *tSocket;
+
+
 };
 
 
