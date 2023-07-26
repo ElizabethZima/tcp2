@@ -8,13 +8,12 @@
 int main(int argc, char *argv[]) {
     QCoreApplication a(argc, argv);
 
-
+    std::cout << "--- TCP Server ---" << std::endl;
+    TcpServer ts;
    // TCPServ::print();
     std::cout << "--- TCP Client ---" << std::endl;
     TcpClient tc;
 
-    std::cout << "--- TCP Server ---" << std::endl;
-    TcpServer ts;
 
     return QCoreApplication::exec();
 }

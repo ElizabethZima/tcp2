@@ -11,7 +11,7 @@ class TcpClient : public QObject
 Q_OBJECT
 
 public:
-    TcpClient(QObject *p = 0);
+    TcpClient(QObject *p = nullptr);
     ~TcpClient();
 
 public slots:

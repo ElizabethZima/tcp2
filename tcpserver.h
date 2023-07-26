@@ -1,7 +1,3 @@
-//
-// Created by Студент on 25.07.2023.
-//
-
 #ifndef TCP2_TCPSERVER_H
 #define TCP2_TCPSERVER_H
 
@@ -25,7 +21,6 @@ public slots:
 private:
     QTcpServer *tServer;
     QTcpSocket *tSocket;
-
 
 };
 
