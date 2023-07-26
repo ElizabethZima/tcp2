@@ -4,6 +4,13 @@
 #include "TCPServ.h"
 #include "tcpserver.h"
 #include "tcpclient.h"
+#include <QTime>
+void delay()
+{
+    QTime dieTime= QTime::currentTime().addSecs(1);
+    while (QTime::currentTime() < dieTime)
+        QCoreApplication::processEvents(QEventLoop::AllEvents, 100);
+}
 
 int main(int argc, char *argv[]) {
     QCoreApplication a(argc, argv);
@@ -14,6 +21,7 @@ int main(int argc, char *argv[]) {
     std::cout << "--- TCP Client ---" << std::endl;
     TcpClient tc;
 
+    delay();
 
     return QCoreApplication::exec();
 }

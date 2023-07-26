@@ -48,13 +48,14 @@ void TcpServer::read_and_reply()
     std::cout << "--- Reply ---" << std::endl;
     /* Ответить */
     tSocket->write("Nice day");
-    tSocket->disconnectFromHost();
-    tServer->close();
-    //connect(tSocket, SIGNAL(disconnected()),this, SLOT(end_connect()));
+
+    connect(tSocket, SIGNAL(disconnected()), this, SLOT(end_connect()));
 }
 
 void TcpServer::end_connect(){
 
     std::cout << "--- Connection Ended Server---" << std::endl;
+    tServer->close();
+    return;
 
 }
