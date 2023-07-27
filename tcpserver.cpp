@@ -17,15 +17,16 @@ TcpServer::TcpServer(QTcpServer *p) :
         std::cout << "*** FAIL LISTING ***" << std::endl;
     /* Обработка нового запроса на подключение */
     connect(tServer, SIGNAL(newConnection()),this, SLOT(accept_connection()));
-    connect(tSocket, SIGNAL(disconnected()), this, SLOT(end_connect()));
 
 }
 
 TcpServer::~TcpServer()
 {
-    std::cout << "server end";
-    delete tServer;
-    delete tSocket;
+    tSocket->close();
+    tServer->close();
+    tSocket->deleteLater();
+    tServer->deleteLater();
+
 }
 
 void TcpServer::accept_connection()
@@ -33,6 +34,9 @@ void TcpServer::accept_connection()
     std::cout << "--- Accept Connection ---" << std::endl;
     /* Сервер подключает свой сокет к клиентскому сокету */
     tSocket = tServer->nextPendingConnection();
+    tServer->setMaxPendingConnections(1);
+    tServer->waitForNewConnection(10);
+
     /* Socket читает и отвечает, как только получает информацию */
     connect(tSocket, SIGNAL(readyRead()),
             this, SLOT(read_and_reply()));
@@ -55,7 +59,5 @@ void TcpServer::read_and_reply()
 void TcpServer::end_connect(){
 
     std::cout << "--- Connection Ended Server---" << std::endl;
-    tServer->close();
-    return;
 
 }

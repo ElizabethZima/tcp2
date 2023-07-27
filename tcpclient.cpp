@@ -25,7 +25,8 @@ TcpClient::TcpClient(QObject *p) :
 
 TcpClient::~TcpClient()
 {
-    delete tSocket;
+    tSocket->close();
+    tSocket->deleteLater();
 }
 
 void TcpClient::send_msg()
@@ -43,7 +44,7 @@ void TcpClient::read_msg()
     /* Прочитать информацию */
     QByteArray ba = tSocket->readAll();
     std::cout << ba.data() << std::endl;
-    tSocket->disconnectFromHost();
+
 }
 
 void TcpClient::end_connect()

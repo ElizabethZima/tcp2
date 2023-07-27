@@ -2,7 +2,6 @@
 #ifndef TCP2_TCPCLIENT_H
 #define TCP2_TCPCLIENT_H
 
-
 #include <QObject>
 #include <QTcpSocket>
 
